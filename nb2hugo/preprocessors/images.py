@@ -37,7 +37,7 @@ class ImagesPreprocessor(Preprocessor):
         if os.path.isfile(match):
             filename = os.path.basename(match)
             resources["images_path"][filename] = match
-            link = "![" + alt_text + "](" + filename + ")"
+            link = "![" + alt_text + "](" + os.path.basename(url) + ")"
         else:
             link = "![" + alt_text + "](" + url + ")"
         return link
