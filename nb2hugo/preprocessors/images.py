@@ -35,7 +35,7 @@ class ImagesPreprocessor(Preprocessor):
         match = result.group()
         # print(f"{url_as_path} -> {match}")
         if os.path.isfile(match):
-            filename = os.path.basename(url)
+            filename = os.path.basename(match)
             resources["images_path"][filename] = match
             link = "![" + alt_text + "](" + filename + ")"
         else:
