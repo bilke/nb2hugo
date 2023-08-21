@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import shutil
 from .exporter import HugoExporter
 
@@ -38,8 +39,9 @@ class HugoWriter:
                 os.makedirs(target_dir, exist_ok=True)
             for key, value in resources["images_path"].items():
                 target = os.path.join(target_dir, key)
-                shutil.copy2(value, target)
-                print(f"Created '{target}'")
+                if Path(value).resolve() != Path(target).resolve():
+                    shutil.copy2(value, target)
+                    print(f"Created '{target}'")
 
     def _write_markdown(self, markdown, resources, site_dir, section):
         """Save markdown to file."""
